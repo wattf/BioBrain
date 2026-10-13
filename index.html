@@ -1,0 +1,508 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BioBrain — Репетитор по биологии Токарева Луанна | Подготовка к ЕГЭ и ОГЭ</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;800;900&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #10B981;
+            --primary-dark: #059669;
+            --accent-yellow: #FACE15;
+            --bg-light: #ECFDF5;
+            --text-dark: #0F172A;
+            --text-muted: #475569;
+            --card-bg: #FFFFFF;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Nunito', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* HEADER & NAV */
+        header {
+            background: linear-gradient(135deg, #059669, #10B981);
+            color: white;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 900;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        .nav-btn {
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: 700;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+        }
+
+        .nav-btn:hover, .nav-btn.active {
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            transform: translateY(-2px);
+        }
+
+        /* CONTAINER */
+        .container {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1rem;
+        }
+
+        /* TAB CONTENT */
+        .tab-content {
+            display: none;
+            animation: fadeIn 0.4s ease-in-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* HERO SECTION */
+        .hero {
+            background: white;
+            border-radius: 24px;
+            padding: 3rem 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 280px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .hero-text p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .btn-cta {
+            background: var(--accent-yellow);
+            color: var(--text-dark);
+            border: none;
+            padding: 0.9rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 800;
+            border-radius: 30px;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(250, 206, 21, 0.4);
+            transition: transform 0.2s;
+        }
+
+        .btn-cta:hover {
+            transform: scale(1.05);
+        }
+
+        .hero-avatar {
+            width: 220px;
+            height: 220px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #A7F3D0, #34D399);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 6rem;
+            box-shadow: 0 8px 25px rgba(16, 185, 129, 0.3);
+            margin: 0 auto;
+        }
+
+        /* CARDS GRID */
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 1.8rem;
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+            border: 2px solid #F0FDF4;
+            transition: transform 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card h3 {
+            color: var(--primary-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        /* REVIEWS */
+        .review-card {
+            background: white;
+            padding: 1.5rem;
+            border-radius: 16px;
+            border-left: 5px solid var(--primary);
+            margin-bottom: 1rem;
+        }
+
+        .review-author {
+            font-weight: 800;
+            margin-top: 0.8rem;
+            color: var(--primary-dark);
+        }
+
+        .review-score {
+            display: inline-block;
+            background: #FEF3C7;
+            color: #D97706;
+            padding: 0.2rem 0.6rem;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 800;
+            margin-left: 0.5rem;
+        }
+
+        /* QUIZ SECTION */
+        .quiz-container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .quiz-option {
+            display: block;
+            width: 100%;
+            padding: 0.8rem;
+            margin: 0.5rem 0;
+            background: var(--bg-light);
+            border: 2px solid #A7F3D0;
+            border-radius: 12px;
+            cursor: pointer;
+            font-weight: 700;
+            transition: all 0.2s;
+        }
+
+        .quiz-option:hover {
+            background: var(--primary);
+            color: white;
+        }
+
+        /* MODAL */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 24px;
+            width: 90%;
+            max-width: 450px;
+            position: relative;
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 15px; right: 20px;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-muted);
+        }
+
+        .form-group {
+            margin-bottom: 1.2rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border: 2px solid #E2E8F0;
+            border-radius: 10px;
+            font-size: 1rem;
+        }
+
+        .form-group input:focus {
+            border-color: var(--primary);
+            outline: none;
+        }
+
+        /* FOOTER */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            margin-top: 3rem;
+            border-top: 1px solid #E2E8F0;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- HEADER -->
+    <header>
+        <div class="logo">🧬 BioBrain</div>
+        <ul class="nav-tabs">
+            <li><button class="nav-btn active" onclick="openTab('about', event)">Главная</button></li>
+            <li><button class="nav-btn" onclick="openTab('courses', event)">Обучение</button></li>
+            <li><button class="nav-btn" onclick="openTab('reviews', event)">Отзывы</button></li>
+            <li><button class="nav-btn" onclick="openTab('quiz', event)">Мини-Квиз 🌿</button></li>
+            <li><button class="nav-btn" onclick="openTab('contacts', event)">Контакты</button></li>
+        </ul>
+    </header>
+
+    <div class="container">
+
+        <!-- ВКЛАДКА 1: ГЛАВНАЯ / ИНФО -->
+        <div id="about" class="tab-content active">
+            <div class="hero">
+                <div class="hero-text">
+                    <h1>Погружение в биологию без зубрежки! 🧪</h1>
+                    <p>Привет! Меня зовут <strong>Токарева Луанна</strong>. Я помогаю влюбиться в биологию, сдать экзамены на высокие баллы и легко разобраться даже в самых сложных биохимических процессах!</p>
+                    <button class="btn-cta" onclick="openModal()">Записаться на вводный урок</button>
+                </div>
+                <div class="hero-avatar">🔬</div>
+            </div>
+
+            <h2 style="margin-bottom: 1rem;">Почему выбирают занятия с Луанной?</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🎯</div>
+                    <h3>Интерактивные схемы</h3>
+                    <p>Никаких скучных лекций! Разбираем анатомию, генетику и ботанику через визуальные карточки, 3D-модели и ассоциации.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📊</div>
+                    <h3>Высокие результаты</h3>
+                    <p>Пошаговая подготовка к ОГЭ и ЕГЭ с акцентом на сложные задания 2-й части и решение генетических задач.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌱</div>
+                    <h3>Дружелюбная атмосфера</h3>
+                    <p>Комфортная поддержка на каждом этапе обучения, где нет глупых вопросов и каждый прогресс ценен.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА 2: ОБУЧЕНИЕ -->
+        <div id="courses" class="tab-content">
+            <h2>Программы обучения</h2>
+            <div class="grid">
+                <div class="card">
+                    <div class="card-icon">🎓</div>
+                    <h3>Подготовка к ЕГЭ</h3>
+                    <p>Разбор биохимии, генетики, цитологии и экологии. Тренинг по выполнению сложных заданий с развернутым ответом.</p>
+                    <br>
+                    <strong>Индивидуальный подход</strong>
+                </div>
+                <div class="card">
+                    <div class="card-icon">📘</div>
+                    <h3>Подготовка к ОГЭ</h3>
+                    <p>Систематизация всей школьной базы, отработка тестовых форматов и разбор всех биологических экспериментов.</p>
+                    <br>
+                    <strong>Доступные форматы</strong>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🌿</div>
+                    <h3>Подтягивание школьной программы</h3>
+                    <p>Помощь с домашними заданиями, устранение пробелов и формирование фундаментального интереса к науке.</p>
+                    <br>
+                    <strong>Для 5-8 классов</strong>
+                </div>
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА 3: ОТЗЫВЫ -->
+        <div id="reviews" class="tab-content">
+            <h2>Отзывы учеников</h2>
+            <br>
+            <div class="review-card">
+                <p>«Занятия с Луанной — это просто любовь! Генетические задачи раньше казались адом, а теперь решаю их за пару минут. Очень понятные конспекты!»</p>
+                <div class="review-author">Мария К. <span class="review-score">ЕГЭ: 91 балл</span></div>
+            </div>
+            <div class="review-card">
+                <p>«Спасибо Луанне за системный подход и поддержку! Подготовился к ОГЭ без стресса и получил желаемую 5!»</p>
+                <div class="review-author">Артем П. <span class="review-score">ОГЭ: Оценка 5</span></div>
+            </div>
+            <div class="review-card">
+                <p>«Интересные презентации и никакой сухой теории. Биология стала моим любимым предметом!»</p>
+                <div class="review-author">София Т. <span class="review-score">ЕГЭ: 88 баллов</span></div>
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА 4: ВИКТОРИНА -->
+        <div id="quiz" class="tab-content">
+            <div class="quiz-container">
+                <h2>Проверь себя! 🧬</h2>
+                <p style="margin-bottom: 1.5rem; color: var(--text-muted);">Какая органелла отвечает за синтез белка в клетке?</p>
+                
+                <button class="quiz-option" onclick="checkQuiz(false)">А) Лизосома</button>
+                <button class="quiz-option" onclick="checkQuiz(true)">Б) Рибосома</button>
+                <button class="quiz-option" onclick="checkQuiz(false)">В) Вакуоль</button>
+                
+                <div id="quiz-result" style="margin-top: 1rem; font-weight: 800;"></div>
+            </div>
+        </div>
+
+        <!-- ВКЛАДКА 5: КОНТАКТЫ -->
+        <div id="contacts" class="tab-content">
+            <h2>Связаться с Луанной</h2>
+            <br>
+            <div class="card">
+                <p>👩‍🏫 <strong>Репетитор:</strong> Токарева Луанна</p>
+                <p>📱 <strong>Telegram / WhatsApp:</strong> +7 (999) 000-00-00</p>
+                <p>📧 <strong>Email:</strong> luanna.bio@example.com</p>
+                <p>📍 <strong>Формат:</strong> Онлайн-занятия</p>
+                <br>
+                <button class="btn-cta" onclick="openModal()">Записаться на занятие</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL POPUP -->
+    <div class="modal" id="modal">
+        <div class="modal-content">
+            <span class="close-modal" onclick="closeModal()">&times;</span>
+            <h3 style="color: var(--primary-dark); margin-bottom: 1rem;">Запись к Луанне 🎉</h3>
+            <form onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label>Ваше имя</label>
+                    <input type="text" placeholder="Имя" required>
+                </div>
+                <div class="form-group">
+                    <label>Телефон / Telegram</label>
+                    <input type="text" placeholder="@username или номер" required>
+                </div>
+                <div class="form-group">
+                    <label>Цель обучения</label>
+                    <select>
+                        <option>Подготовка к ЕГЭ</option>
+                        <option>Подготовка к ОГЭ</option>
+                        <option>Повысить успеваемость</option>
+                    </select>
+                </div>
+                <button type="submit" class="btn-cta" style="width: 100%;">Отправить заявку</button>
+            </form>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2026 BioBrain — Репетитор по биологии Токарева Луанна.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        // Функция переключения вкладок
+        function openTab(tabId, evt) {
+            const contents = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.nav-btn');
+
+            contents.forEach(content => content.classList.remove('active'));
+            buttons.forEach(btn => btn.classList.remove('active'));
+
+            document.getElementById(tabId).classList.add('active');
+            if (evt && evt.currentTarget) {
+                evt.currentTarget.classList.add('active');
+            }
+        }
+
+        // Модальное окно
+        function openModal() {
+            document.getElementById('modal').style.display = 'flex';
+        }
+
+        function closeModal() {
+            document.getElementById('modal').style.display = 'none';
+        }
+
+        function submitForm(event) {
+            event.preventDefault();
+            alert('Спасибо за заявку! Луанна свяжется с вами в ближайшее время.');
+            closeModal();
+        }
+
+        // Мини-викторина
+        function checkQuiz(isCorrect) {
+            const resultDiv = document.getElementById('quiz-result');
+            if(isCorrect) {
+                resultDiv.style.color = '#059669';
+                resultDiv.innerText = 'Отлично! 🎉 Рибосомы действительно отвечают за биосинтез белка!';
+            } else {
+                resultDiv.style.color = '#DC2626';
+                resultDiv.innerText = 'Упс, не совсем так! Попробуй еще раз 😉';
+            }
+        }
+    </script>
+</body>
+</html>
